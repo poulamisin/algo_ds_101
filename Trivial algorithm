@@ -1,0 +1,61 @@
+vector<int> d1(n),  d2(n);
+for (int i = 0; i < n; i++) {
+    d1[i] = 1;
+    while (0 <= i - d1[i] && i + d1[i] < n && s[i - d1[i]] == s[i + d1[i]]) {
+        d1[i]++;
+    }
+
+    d2[i] = 0;
+    while (0 <= i - d2[i] - 1 && i + d2[i] < n && s[i - d2[i] - 1] == s[i + d2[i]]) {
+        d2[i]++;
+    }
+}
+
+// C++ program to sort an array using hash 
+// function 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+void sortUsingHash(int a[], int n) 
+{ 
+    // find the maximum element 
+    int max = *std::max_element(a, a + n); 
+  
+    // create a hash function upto the max size 
+    int hash[max + 1] = { 0 }; 
+  
+    // traverse through all the elements and  
+    // keep a count 
+    for (int i = 0; i < n; i++) 
+        hash[a[i]] += 1; 
+  
+    // Traverse upto all elements and check if  
+    // it is present or not. If it is present,  
+    // then print the element the number of times 
+    // it's present. Once we have printed n times,  
+    // that means we have printed n elements 
+    // so break out of the loop 
+    for (int i = 0; i <= max; i++) { 
+  
+        // if present 
+        if (hash[i]) { 
+  
+            // print the element that number of  
+            // times it's present 
+            for (int j = 0; j < hash[i]; j++) { 
+                cout << i << " "; 
+            } 
+        } 
+    } 
+} 
+  
+// driver program  
+int main() 
+{ 
+    int a[] = { 9, 4, 3, 2, 5, 2, 1, 0, 4,  
+              3, 5, 10, 15, 12, 18, 20, 19 }; 
+    int n = sizeof(a) / sizeof(a[0]); 
+  
+    sortUsingHash(a, n); 
+    return 0; 
+}
